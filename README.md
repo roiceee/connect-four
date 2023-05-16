@@ -1,2 +1,3 @@
-# connect-four
-A connect four game written that implements a matrix as part of requirements of Discrete Math Subject.
+# connect four
+
+A connect four game that implements a matrix, as a requirement for discrete math subject.
