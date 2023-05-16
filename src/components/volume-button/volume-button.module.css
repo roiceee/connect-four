@@ -1,0 +1,12 @@
+.style {
+    background-color: black;
+    border-radius: 12px;
+    padding: 12px;
+}
+
+@media (min-width: 1200px) {
+    .style:hover {
+        background-color: rgb(28, 28, 28);
+    }    
+}
+
