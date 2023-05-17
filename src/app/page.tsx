@@ -1,25 +1,31 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import Container from "react-bootstrap/Container";
 import PlayButton from "@/components/play-button/play-button";
 import Board from "@/components/board/board";
+import { playAudio } from "@/util/background-music";
+
+
 
 
 export default function Home() {
+
   const [isPlayingState, setIsPlayingState] = useState<boolean>(false);
 
   const setIsPlaying = useCallback(() => {
     setIsPlayingState(true);
+    playAudio();
   }, []);
+
   useEffect(() => {
     window.onbeforeunload = function() {
       return ""
     }
   },[])
   return (
-    
+  
     <Container>
       <div style={{ textAlign: "center" }}>
         <Image
@@ -49,5 +55,6 @@ export default function Home() {
       )}
       
     </Container>
+    
   );
 }

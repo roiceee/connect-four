@@ -1,3 +1,4 @@
+import { restartAudio } from "@/util/background-music";
 import { useCallback, useState } from "react";
 import { Button } from "react-bootstrap";
 
@@ -19,6 +20,7 @@ function ResetButton({ onClick }: ResetButtonProps) {
   const resetButtonHandler = useCallback(() => {
     onClick();
     hideResetAttempt();
+    restartAudio();
   }, [hideResetAttempt, onClick]);
 
   return (

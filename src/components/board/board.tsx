@@ -9,6 +9,7 @@ import VolumeButton from "../volume-button/volume-button";
 function Board() {
   const [currentPlayer, setCurrentPlayer] = useState<1 | 2>(1);
   const [hasWinner, setHasWinner] = useState<boolean>(false);
+  const [isDraw, setIsDraw] = useState<boolean>(false);
   const [board, setBoard] = useState([
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
@@ -17,6 +18,17 @@ function Board() {
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
   ]);
+
+  const checkDraw = useCallback(() => {
+      for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+          if (board[i][j] === 0) {
+            return false;
+          }
+        }
+      }
+      return true;
+  }, [board])
 
   const checkWin = useCallback(
     (row: number, col: number, player: number) => {
@@ -105,10 +117,12 @@ function Board() {
       setHasWinner(true);
       return;
     }
-
     changePlayer();
     setBoard(newBoard);
-  }, [board, changePlayer, currentPlayer, checkWin, hasWinner]);
+    if (checkDraw()) {
+      setIsDraw(true);
+    };
+  }, [board, changePlayer, currentPlayer, checkWin, hasWinner, checkDraw]);
 
   const refresh = useCallback(() => {
     window.location.reload();
@@ -144,7 +158,7 @@ function Board() {
       </div>
       <div className="bg-black bg-opacity-50 p-2 mt-2 rounded-2">
         <div className="d-flex align-items-center gap-2">
-          {!hasWinner && (
+          {(!hasWinner && !isDraw) && (
             <>
               <span>
                 <b>Next turn:</b>
@@ -152,7 +166,14 @@ function Board() {
               <BoardCell value={currentPlayer} side={30} />
             </>
           )}
-          {hasWinner && (
+          {(!hasWinner && isDraw) && (
+            <>
+              <span>
+                <b>It&apos;s a draw!</b>
+              </span>
+            </>
+          )}
+          {hasWinner &&  (
             <>
               <BoardCell value={currentPlayer} side={30} />
               <span>
@@ -172,7 +193,7 @@ function Board() {
           >
             Back to main screen
           </Button>
-          {/* <VolumeButton /> */}
+          <VolumeButton />
         </div>
       </div>
     </div>
