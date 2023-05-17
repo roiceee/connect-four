@@ -17,6 +17,7 @@ export default function Home() {
     if (!audio) {
       return;
     }
+    audio.volume = 0.7;
     audio.play();
     audio.loop = true;
   }, [audio]);

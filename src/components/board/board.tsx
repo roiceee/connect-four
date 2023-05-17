@@ -1,5 +1,5 @@
 "use client";
-import { MutableRefObject, useCallback, useState } from "react";
+import { MutableRefObject, useCallback, useEffect, useState } from "react";
 import BoardCell from "./board-cell/board-cell";
 import style from "./board.module.css";
 import { Button } from "react-bootstrap";
@@ -10,7 +10,7 @@ interface BoardProps {
   audio: null | HTMLAudioElement;
 }
 
-function Board({audio}: BoardProps) {
+function Board({ audio }: BoardProps) {
   const [currentPlayer, setCurrentPlayer] = useState<1 | 2>(1);
   const [hasWinner, setHasWinner] = useState<boolean>(false);
   const [isDraw, setIsDraw] = useState<boolean>(false);
@@ -23,16 +23,22 @@ function Board({audio}: BoardProps) {
     [0, 0, 0, 0, 0, 0],
   ]);
 
+  const [popSound, setPopSound] = useState<null | HTMLAudioElement>(null);
+
+  const [winSound, setWinSound] = useState<null | HTMLAudioElement>(null);
+
+  const [drawSound, setDrawSound] = useState<null | HTMLAudioElement>(null);
+
   const checkDraw = useCallback(() => {
-      for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board[i].length; j++) {
-          if (board[i][j] === 0) {
-            return false;
-          }
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[i].length; j++) {
+        if (board[i][j] === 0) {
+          return false;
         }
       }
-      return true;
-  }, [board])
+    }
+    return true;
+  }, [board]);
 
   const checkWin = useCallback(
     (row: number, col: number, player: number) => {
@@ -101,32 +107,62 @@ function Board({audio}: BoardProps) {
     setCurrentPlayer(1);
   }, [currentPlayer]);
 
-  const handleColumnClick = useCallback((columnIndex: number) => {
-    if (hasWinner) {
-      return;
-    }
-    // Find the lowest empty cell in the clicked column
-    const row = board[columnIndex].indexOf(0);
+  const handleColumnClick = useCallback(
+    (columnIndex: number) => {
+      if (hasWinner) {
+        return;
+      }
 
-    // If the column is full, do nothing
-    if (row === -1) {
-      return;
-    }
+      if (popSound !== null) {
+        popSound.play();
+      }
+      // Find the lowest empty cell in the clicked column
+      const row = board[columnIndex].indexOf(0);
 
-    // Update the board with the new move
-    const newBoard = [...board];
-    newBoard[columnIndex][row] = currentPlayer;
+      // If the column is full, do nothing
+      if (row === -1) {
+        return;
+      }
 
-    if (checkWin(columnIndex, row, currentPlayer)) {
-      setHasWinner(true);
-      return;
-    }
-    changePlayer();
-    setBoard(newBoard);
-    if (checkDraw()) {
-      setIsDraw(true);
-    };
-  }, [board, changePlayer, currentPlayer, checkWin, hasWinner, checkDraw]);
+      // Update the board with the new move
+      const newBoard = [...board];
+      newBoard[columnIndex][row] = currentPlayer;
+
+      if (checkWin(columnIndex, row, currentPlayer)) {
+        if (winSound !== null) {
+          audio!.pause();
+          winSound.play();
+          setTimeout(() => {
+            audio!.play();
+          }, 4000);
+        }
+        setHasWinner(true);
+        return;
+      }
+      changePlayer();
+      setBoard(newBoard);
+      if (checkDraw()) {
+        audio?.pause();
+        drawSound!.play();
+        setTimeout(() => {
+          audio!.play();
+        }, 5000);
+        setIsDraw(true);
+      }
+    },
+    [
+      board,
+      changePlayer,
+      currentPlayer,
+      checkWin,
+      hasWinner,
+      checkDraw,
+      popSound,
+      winSound,
+      audio,
+      drawSound,
+    ]
+  );
 
   const refresh = useCallback(() => {
     window.location.reload();
@@ -143,6 +179,13 @@ function Board({audio}: BoardProps) {
     ]);
     setCurrentPlayer(1);
     setHasWinner(false);
+    setIsDraw(false);
+  }, []);
+
+  useEffect(() => {
+    setPopSound(new Audio("/pop.MP3"));
+    setWinSound(new Audio("/win.MP3"));
+    setDrawSound(new Audio("/draw.MP3"));
   }, []);
 
   return (
@@ -155,14 +198,18 @@ function Board({audio}: BoardProps) {
             onClick={() => handleColumnClick(rowIndex)}
           >
             {row.map((cellValue, columnIndex) => (
-              <BoardCell key={rowIndex + "-" + columnIndex} value={cellValue} />
+              <BoardCell
+                key={rowIndex + "-" + columnIndex}
+                value={cellValue}
+                animate={true}
+              />
             ))}
           </div>
         ))}
       </div>
       <div className="bg-black bg-opacity-50 p-2 mt-2 rounded-2">
         <div className="d-flex align-items-center gap-2">
-          {(!hasWinner && !isDraw) && (
+          {!hasWinner && !isDraw && (
             <>
               <span>
                 <b>Next turn:</b>
@@ -170,16 +217,16 @@ function Board({audio}: BoardProps) {
               <BoardCell value={currentPlayer} side={30} />
             </>
           )}
-          {(!hasWinner && isDraw) && (
+          {!hasWinner && isDraw && (
             <>
               <span>
                 <b>It&apos;s a draw!</b>
               </span>
             </>
           )}
-          {hasWinner &&  (
+          {hasWinner && (
             <>
-              <BoardCell value={currentPlayer} side={30} />
+              <BoardCell value={currentPlayer} side={30} animate={false} />
               <span>
                 <b>Won the game!</b>
               </span>
@@ -197,7 +244,7 @@ function Board({audio}: BoardProps) {
           >
             Back to main screen
           </Button>
-          <VolumeButton audio={audio}/>
+          <VolumeButton audio={audio} />
         </div>
       </div>
     </div>

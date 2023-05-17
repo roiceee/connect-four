@@ -1,4 +1,3 @@
-import Head from "next/head";
 import "../assets/style/globals.scss";
 
 export const metadata = {
