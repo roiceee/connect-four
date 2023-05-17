@@ -4,7 +4,6 @@ import BoardCell from "./board-cell/board-cell";
 import style from "./board.module.css";
 import { Button } from "react-bootstrap";
 import ResetButton from "./reset-button/reset-button";
-import { replayAudio } from "@/util/background-audio";
 import VolumeButton from "../volume-button/volume-button";
 
 function Board() {
@@ -126,7 +125,6 @@ function Board() {
     ]);
     setCurrentPlayer(1);
     setHasWinner(false);
-    replayAudio();
   }, []);
 
   return (

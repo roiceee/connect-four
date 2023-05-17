@@ -2,19 +2,16 @@
 import Image from "next/image";
 import style from "./volume-button.module.css";
 import { useCallback, useState } from "react";
-import { muteAudio, unmuteAudio } from "@/util/background-audio";
 
 function VolumeButton() {
   const [isMute, setIsMute] = useState<boolean>(false);
 
   const mute = useCallback(() => {
     setIsMute(true);
-    muteAudio();
   }, []);
 
   const unMute = useCallback(() => {
     setIsMute(false);
-    unmuteAudio();
   }, []);
 
   return (

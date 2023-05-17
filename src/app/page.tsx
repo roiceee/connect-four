@@ -4,17 +4,14 @@ import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import PlayButton from "@/components/play-button/play-button";
-import { playAudio } from "@/util/background-audio";
-import VolumeButton from "@/components/volume-button/volume-button";
 import Board from "@/components/board/board";
-import Button from "react-bootstrap/Button"
+
 
 export default function Home() {
   const [isPlayingState, setIsPlayingState] = useState<boolean>(false);
 
   const setIsPlaying = useCallback(() => {
     setIsPlayingState(true);
-    playAudio();
   }, []);
   useEffect(() => {
     window.onbeforeunload = function() {
