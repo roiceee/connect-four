@@ -14,11 +14,13 @@ function VolumeButton({audio}: VolumeButtonProps) {
 
   const muteHandler = useCallback(() => {
     setIsMute(true);
-  }, []);
+    audio.current.muted = true;
+  }, [audio]);
 
   const unMuteHandler = useCallback(() => {
     setIsMute(false);
-  }, []);
+    audio.current.muted = false;
+  }, [audio]);
 
   return (
     <>

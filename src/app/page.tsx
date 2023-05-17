@@ -15,6 +15,7 @@ export default function Home() {
   const setIsPlaying = useCallback(() => {
     setIsPlayingState(true);
     audio.current.play();
+    audio.current.loop = true;
   }, []);
 
   useEffect(() => {
