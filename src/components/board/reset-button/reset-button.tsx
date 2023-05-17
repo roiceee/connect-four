@@ -20,7 +20,6 @@ function ResetButton({ onClick }: ResetButtonProps) {
   const resetButtonHandler = useCallback(() => {
     onClick();
     hideResetAttempt();
-
   }, [hideResetAttempt, onClick]);
 
   return (

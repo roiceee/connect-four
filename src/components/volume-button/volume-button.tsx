@@ -1,6 +1,8 @@
 "use client";
 import Image from "next/image";
 import style from "./volume-button.module.css";
+import { useCallback, useContext, useState } from "react";
+import { muteAudio, unMuteAudio } from "@/util/background-music";
 import { MutableRefObject, useCallback, useContext, useState } from "react";
 
 
@@ -13,13 +15,11 @@ function VolumeButton({audio}: VolumeButtonProps) {
 
   const muteHandler = useCallback(() => {
     setIsMute(true);
-    audio.current.muted = true;
-  }, [audio]);
+  }, []);
 
   const unMuteHandler = useCallback(() => {
     setIsMute(false);
-    audio.current.muted = false;
-  }, [audio]);
+  }, []);
 
   return (
     <>

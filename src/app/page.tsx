@@ -1,14 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useContext, useContext, useEffect, useMemo, useMemo, useRef, useState } from "react";
 import Container from "react-bootstrap/Container";
 import PlayButton from "@/components/play-button/play-button";
 import Board from "@/components/board/board";
-
-
-
-
 
 export default function Home() {
 
