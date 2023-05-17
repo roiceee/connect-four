@@ -4,6 +4,6 @@ A connect four game that implements a matrix, as a requirement for discrete math
 
 Members:
 
-Aldeza, John Roice
-Java, Jivin
+Aldeza, John Roice  
+Java, Jivin  
 Torres, Kimzii
