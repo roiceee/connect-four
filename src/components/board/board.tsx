@@ -172,7 +172,7 @@ function Board() {
           >
             Back to main screen
           </Button>
-          <VolumeButton />
+          {/* <VolumeButton /> */}
         </div>
       </div>
     </div>
