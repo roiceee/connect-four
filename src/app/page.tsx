@@ -7,6 +7,7 @@ import PlayButton from "@/components/play-button/play-button";
 import { playAudio } from "@/util/background-audio";
 import VolumeButton from "@/components/volume-button/volume-button";
 import Board from "@/components/board/board";
+import Button from "react-bootstrap/Button"
 
 export default function Home() {
   const [isPlayingState, setIsPlayingState] = useState<boolean>(false);
@@ -21,6 +22,7 @@ export default function Home() {
     }
   },[])
   return (
+    
     <Container>
       <div style={{ textAlign: "center" }}>
         <Image
@@ -48,9 +50,7 @@ export default function Home() {
           </div>
         </Container>
       )}
-      <div style={{ position: "absolute", top: "92%", left: "85%" }}>
-        <VolumeButton />
-      </div>
+      
     </Container>
   );
 }

@@ -35,7 +35,7 @@ function ResetButton({ onClick }: ResetButtonProps) {
       {buttonPressed && (
         <div>
           Do you want to reset the game?
-          <div className="d-flex gap-2">
+          <div className="d-flex gap-2 mt-1">
             <Button variant="danger" onClick={resetButtonHandler}>
               Yes
             </Button>
