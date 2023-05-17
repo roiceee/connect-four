@@ -1,3 +1,4 @@
+import Footer from "@/components/footer";
 import "../assets/style/globals.scss";
 
 export const metadata = {
@@ -13,7 +14,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body style={{ backgroundImage: `url(/images/background.png)` }}>
-        {children}
+        <div
+          className="d-flex flex-column justify-content-between gap-1"
+          style={{ minHeight: "100vh" }}
+        >
+          <div>{children}</div>
+
+          <div>
+            <Footer />
+          </div>
+        </div>
       </body>
     </html>
   );
