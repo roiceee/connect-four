@@ -6,7 +6,7 @@ import { useCallback, MutableRefObject, useState } from "react";
 
 
 interface VolumeButtonProps {
-  audio: MutableRefObject<HTMLAudioElement>;
+  audio: null | HTMLAudioElement;
 }
 
 function VolumeButton({audio}: VolumeButtonProps) {
@@ -14,12 +14,18 @@ function VolumeButton({audio}: VolumeButtonProps) {
 
   const muteHandler = useCallback(() => {
     setIsMute(true);
-    audio.current.muted = true;
+    if (!audio) {
+      return;
+    }
+    audio.muted = true;
   }, [audio]);
 
   const unMuteHandler = useCallback(() => {
     setIsMute(false);
-    audio.current.muted = false;
+    if (!audio) {
+      return;
+    }
+    audio.muted = false;
   }, [audio]);
 
   return (

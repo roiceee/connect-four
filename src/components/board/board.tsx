@@ -7,7 +7,7 @@ import ResetButton from "./reset-button/reset-button";
 import VolumeButton from "../volume-button/volume-button";
 
 interface BoardProps {
-  audio: MutableRefObject<HTMLAudioElement>;
+  audio: null | HTMLAudioElement;
 }
 
 function Board({audio}: BoardProps) {

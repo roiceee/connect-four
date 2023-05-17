@@ -8,18 +8,21 @@ import Board from "@/components/board/board";
 
 export default function Home() {
 
-  const audio = useRef(new Audio("/background.MP3"));
+  const [audio, setAudio] = useState<null | HTMLAudioElement>(null);
 
   const [isPlayingState, setIsPlayingState] = useState<boolean>(false);
 
   const setIsPlaying = useCallback(() => {
     setIsPlayingState(true);
-    audio.current.play();
-    audio.current.loop = true;
-  }, []);
+    if (!audio) {
+      return;
+    }
+    audio.play();
+    audio.loop = true;
+  }, [audio]);
 
   useEffect(() => {
-    audio.current = new Audio("/background.MP3");
+    setAudio(new Audio("/background.MP3"));
     window.onbeforeunload = function() {
       return ""
     }
