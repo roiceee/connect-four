@@ -2,6 +2,8 @@
 import { useCallback, useState } from "react";
 import BoardCell from "./board-cell/board-cell";
 import style from "./board.module.css";
+import { Button } from "react-bootstrap";
+import ResetButton from "./reset-button/reset-button";
 
 function Board() {
   const [currentPlayer, setCurrentPlayer] = useState<1 | 2>(1);
@@ -38,6 +40,18 @@ function Board() {
     setBoard(newBoard);
   };
 
+  const resetBoard = useCallback(() => {
+    setBoard([
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+    ]);
+    setCurrentPlayer(1);
+  }, []);
+
   return (
     <div>
       <div className={style.connectFourBoard}>
@@ -53,11 +67,16 @@ function Board() {
           </div>
         ))}
       </div>
-      <div className="d-flex align-items-center gap-2 mt-3">
-        <span>
-          <b>Next turn:</b>
-        </span>
-        <BoardCell value={currentPlayer}  side={30}/>
+      <div className="bg-black bg-opacity-50 p-2 mt-2 rounded-2">
+        <div className="d-flex align-items-center gap-2">
+          <span>
+            <b>Next turn:</b>
+          </span>
+          <BoardCell value={currentPlayer} side={30} />
+        </div>
+        <div className="mt-1">
+          <ResetButton onClick={resetBoard} />
+        </div>
       </div>
     </div>
   );

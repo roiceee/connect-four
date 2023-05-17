@@ -15,11 +15,11 @@ export default function Home() {
     setIsPlayingState(true);
     playAudio();
   }, []);
-
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+    window.onbeforeunload = function() {
+      return ""
+    }
+  },[])
   return (
     <Container>
       <div style={{ textAlign: "center" }}>
