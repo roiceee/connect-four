@@ -39,7 +39,7 @@ function Board() {
   };
 
   return (
-    <>
+    <div>
       <div className={style.connectFourBoard}>
         {board.map((row, rowIndex) => (
           <div
@@ -53,13 +53,13 @@ function Board() {
           </div>
         ))}
       </div>
-      <div>
-        <h4>
+      <div className="d-flex align-items-center gap-2 mt-3">
+        <span>
           <b>Next turn:</b>
-          <BoardCell value={currentPlayer} />
-        </h4>
+        </span>
+        <BoardCell value={currentPlayer}  side={30}/>
       </div>
-    </>
+    </div>
   );
 }
 

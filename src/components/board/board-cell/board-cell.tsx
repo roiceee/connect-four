@@ -1,22 +1,39 @@
-import style from "./board-cell.module.css"
+import style from "./board-cell.module.css";
 
 interface BoardCellProps {
   value: number;
+  side?: number;
 }
 
-function BoardCell({ value }: BoardCellProps) {
-  const side = "40px";
-
+function BoardCell({ value, side }: BoardCellProps) {
   return (
     <>
       {value == 0 && (
-        <div className={style.style + " " + style.empty}/>
+        <div
+          style={{
+            height: `${side}px`,
+            width: `${side}px`,
+          }}
+          className={style.style + " " + style.empty}
+        />
       )}
       {value == 1 && (
-        <div className={style.style + " " + style.one} />
+        <div
+          style={{
+            height: `${side}px`,
+            width: `${side}px`,
+          }}
+          className={style.style + " " + style.one}
+        />
       )}
       {value == 2 && (
-        <div className={style.style + " " + style.two} />
+        <div
+          style={{
+            height: `${side}px`,
+            width: `${side}px`,
+          }}
+          className={style.style + " " + style.two}
+        />
       )}
     </>
   );
