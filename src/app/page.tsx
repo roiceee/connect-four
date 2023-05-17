@@ -1,25 +1,34 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import Container from "react-bootstrap/Container";
 import PlayButton from "@/components/play-button/play-button";
 import Board from "@/components/board/board";
 
 
+
+
+
 export default function Home() {
+
+  const audio = useRef(new Audio("/background.MP3"));
+
   const [isPlayingState, setIsPlayingState] = useState<boolean>(false);
 
   const setIsPlaying = useCallback(() => {
     setIsPlayingState(true);
+    audio.current.play();
   }, []);
+
   useEffect(() => {
+    audio.current = new Audio("/background.MP3");
     window.onbeforeunload = function() {
       return ""
     }
   },[])
   return (
-    
+  
     <Container>
       <div style={{ textAlign: "center" }}>
         <Image
@@ -43,11 +52,12 @@ export default function Home() {
       {isPlayingState && (
         <Container>
           <div className="d-flex justify-content-center">
-            <Board />
+            <Board audio={audio} />
           </div>
         </Container>
       )}
       
     </Container>
+    
   );
 }

@@ -13,7 +13,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      
       <body style={{ backgroundImage: `url(/images/background.png)` }}>
         {children}
       </body>
