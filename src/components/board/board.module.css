@@ -1,12 +1,25 @@
 .connectFourBoard {
-    height: 500px;
-    width: 400px ;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    background-color: rgba(200, 200, 200, 0.422) ;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 80px;
+    display: flex;
+    gap: 10px;
   }
   
   .connectFourColumn {
     display: flex;
+    gap: 10px;
     flex-direction: column-reverse;
+  }
+
+  @media (max-width: 350px) {
+    .connectFourBoard {
+      padding: 8px;
+      gap: 8px;
+    }
+    
+    .connectFourColumn {
+      gap: 8px;
+    }
   }

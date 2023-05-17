@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useState } from "react";
-import BoardCell from "./board-cell";
+import BoardCell from "./board-cell/board-cell";
 import style from "./board.module.css";
 
 function Board() {
@@ -39,19 +39,27 @@ function Board() {
   };
 
   return (
-    <div className={style.connectFourBoard}>
-      {board.map((row, rowIndex) => (
-        <div
-          key={rowIndex}
-          className={style.connectFourColumn}
-          onClick={() => handleColumnClick(rowIndex)}
-        >
-          {row.map((cellValue, columnIndex) => (
-            <BoardCell key={rowIndex + "-" + columnIndex} value={cellValue} />
-          ))}
-        </div>
-      ))}
-    </div>
+    <>
+      <div className={style.connectFourBoard}>
+        {board.map((row, rowIndex) => (
+          <div
+            key={rowIndex}
+            className={style.connectFourColumn}
+            onClick={() => handleColumnClick(rowIndex)}
+          >
+            {row.map((cellValue, columnIndex) => (
+              <BoardCell key={rowIndex + "-" + columnIndex} value={cellValue} />
+            ))}
+          </div>
+        ))}
+      </div>
+      <div>
+        <h4>
+          <b>Next turn:</b>
+          <BoardCell value={currentPlayer} />
+        </h4>
+      </div>
+    </>
   );
 }
 

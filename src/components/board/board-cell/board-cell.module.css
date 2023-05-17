@@ -1,0 +1,25 @@
+.style {
+    height: 44px;
+    width: 44px;
+    border-radius: 8px;
+}
+
+.empty {
+    background-color: rgba(0, 0, 0, 0.255);
+}
+
+.one {
+    background-color: red;
+}
+
+.two {
+    background-color: yellow;
+}
+
+
+@media (max-width: 350px) {
+    .style {
+        height: 34px;
+        width: 34px;
+    }
+}

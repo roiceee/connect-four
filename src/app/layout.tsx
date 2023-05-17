@@ -1,7 +1,5 @@
 import "../assets/style/globals.scss";
 
-import image from "../assets/images/background.png";
-
 
 
 export const metadata = {
@@ -17,7 +15,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body style={{backgroundImage: `url(${image.src})`}}>{children}</body>
+      <body style={{backgroundImage: `url(/images/background.png)`}}>{children}</body>
     </html>
   )
 }

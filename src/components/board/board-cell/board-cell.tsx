@@ -1,3 +1,5 @@
+import style from "./board-cell.module.css"
+
 interface BoardCellProps {
   value: number;
 }
@@ -8,13 +10,13 @@ function BoardCell({ value }: BoardCellProps) {
   return (
     <>
       {value == 0 && (
-        <div style={{ height: side, width: side, backgroundColor: "black" }} />
+        <div className={style.style + " " + style.empty}/>
       )}
       {value == 1 && (
-        <div style={{ height: side, width: side, backgroundColor: "red" }} />
+        <div className={style.style + " " + style.one} />
       )}
       {value == 2 && (
-        <div style={{ height: side, width: side, backgroundColor: "yellow" }} />
+        <div className={style.style + " " + style.two} />
       )}
     </>
   );

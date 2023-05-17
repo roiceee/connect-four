@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import image from "../assets/images/connect-4.png";
 import { useCallback, useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import PlayButton from "@/components/play-button/play-button";
@@ -25,8 +24,9 @@ export default function Home() {
     <Container>
       <div style={{ textAlign: "center" }}>
         <Image
-          src={image}
+          src={"/images/connect-4.png"}
           height={200}
+          width={300}        
           style={{ objectFit: "contain" }}
           alt="title"
           priority={true}

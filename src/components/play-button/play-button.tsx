@@ -12,9 +12,9 @@ function PlayButton({onClick} : PlayButtonProps) {
       className={style.blink}
       onClick={onClick}
     >
-      <h2>
+      <h1>
         <b>PLAY</b>
-      </h2>
+      </h1>
     </div>
   );
 }
