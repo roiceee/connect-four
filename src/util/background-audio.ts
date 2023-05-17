@@ -19,4 +19,10 @@ function unmuteAudio() {
     backgroundAudio.muted = false;
 }
 
-export {playAudio, stopAudio, muteAudio, unmuteAudio}
+function replayAudio() {
+    backgroundAudio.pause();
+    backgroundAudio.currentTime = 0;
+    backgroundAudio.play();
+}
+
+export {playAudio, stopAudio, muteAudio, unmuteAudio, replayAudio}
