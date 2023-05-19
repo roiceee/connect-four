@@ -9,7 +9,7 @@ function Footer() {
         rel="noreferrer"
         className="text-decoration-none text-light"
       >
-        Aldeza Java Torres | Copyright © 2023 roiceee{" "}
+        Aldeza • Java • Torres | Copyright © 2023 roiceee{" "}
         <svg
           fill="#ffffff"
           xmlns="http://www.w3.org/2000/svg"
