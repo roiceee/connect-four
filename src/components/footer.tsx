@@ -8,6 +8,7 @@ function Footer() {
         target="_blank"
         rel="noreferrer"
         className="text-decoration-none text-light"
+        style={{fontSize: "0.8rem"}}
       >
         Aldeza • Java • Torres | Copyright © 2023 roiceee{" "}
         <svg
