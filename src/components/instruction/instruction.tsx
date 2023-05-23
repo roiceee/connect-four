@@ -1,5 +1,8 @@
 import Image from "next/image";
 import { Button} from "react-bootstrap";
+import ins1 from "public/images/ins1.png";
+import ins2 from "public/images/ins2.png";
+import ins3 from "public/images/ins3.png";
 
 interface InstructionProps {
     onClick: () => void;
@@ -19,7 +22,7 @@ function Instruction({onClick} : InstructionProps) {
       <div className="gap-3 text-center justify-content-center d-flex flex-column flex-md-row">
         <div>
           <Image
-            src={"/images/ins1.png"}
+            src={ins1}
             alt="Horizontal"
             height={120}
             width={120}
@@ -30,7 +33,7 @@ function Instruction({onClick} : InstructionProps) {
         </div>
         <div>
           <Image
-            src={"/images/ins3.png"}
+            src={ins3}
             alt="Vertical"
             height={120}
             width={120}
@@ -41,7 +44,7 @@ function Instruction({onClick} : InstructionProps) {
         </div>
         <div>
           <Image
-            src={"/images/ins2.png"}
+            src={ins2}
             alt="Diagonal"
             height={120}
             width={120}

@@ -4,9 +4,10 @@ interface BoardCellProps {
   value: number;
   side?: number;
   animate?: boolean;
+  className?: string;
 }
 
-function BoardCell({ value, side, animate }: BoardCellProps) {
+function BoardCell({ value, side, animate, className }: BoardCellProps) {
   return (
     <>
       {value == 0 && (
@@ -15,7 +16,11 @@ function BoardCell({ value, side, animate }: BoardCellProps) {
             height: `${side}px`,
             width: `${side}px`,
           }}
-          className={`${style.style} ${style.empty}`}
+          className={`${style.style} ${style.empty} ${
+            animate
+              ? "animate__animated animate__bounceInDown animate_faster"
+              : ""
+          } ${className}`}
         />
       )}
       {value == 1 && (
@@ -25,8 +30,10 @@ function BoardCell({ value, side, animate }: BoardCellProps) {
             width: `${side}px`,
           }}
           className={`${style.style} ${style.one} ${
-            animate ? "animate__animated animate__bounceInDown animate_faster" : ""
-          }`}
+            animate
+              ? "animate__animated animate__bounceInDown animate_faster"
+              : ""
+          } ${className}`}
         />
       )}
       {value == 2 && (
@@ -36,8 +43,10 @@ function BoardCell({ value, side, animate }: BoardCellProps) {
             width: `${side}px`,
           }}
           className={`${style.style} ${style.two} ${
-            animate ? "animate__animated animate__bounceInDown animate_faster" : ""
-          }`}
+            animate
+              ? "animate__animated animate__bounceInDown animate_faster"
+              : ""
+          } ${className}`}
         />
       )}
     </>
