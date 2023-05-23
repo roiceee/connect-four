@@ -23,6 +23,8 @@ function Instruction({onClick} : InstructionProps) {
             alt="Horizontal"
             height={120}
             width={120}
+            priority={true}
+            placeholder="blur"
           />
           <div>Horizontal</div>
         </div>
@@ -32,6 +34,8 @@ function Instruction({onClick} : InstructionProps) {
             alt="Vertical"
             height={120}
             width={120}
+            priority={true}
+            placeholder="blur"
           />
           <div>Vertical</div>
         </div>
@@ -41,6 +45,8 @@ function Instruction({onClick} : InstructionProps) {
             alt="Diagonal"
             height={120}
             width={120}
+            priority={true}
+            placeholder="blur"
           />
           <div className="text-center">Diagonal</div>
         </div>
