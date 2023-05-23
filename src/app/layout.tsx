@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={{ backgroundImage: `url(/images/background.png)` }}>
+      <body style={{backgroundImage: `url(/images/background.png)`, backgroundColor: "#c26477" }}>
         <div
           className="d-flex flex-column justify-content-between gap-1"
           style={{ minHeight: "100vh" }}
