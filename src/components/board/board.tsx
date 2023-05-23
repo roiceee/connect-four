@@ -169,18 +169,34 @@ function Board({ audio }: BoardProps) {
   }, []);
 
   const resetBoard = useCallback(() => {
-    setBoard([
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-    ]);
-    setCurrentPlayer(1);
-    setHasWinner(false);
-    setIsDraw(false);
-  }, []);
+    board.forEach((row, rowIndex) => {
+      row.forEach((cell, columnIndex) => {
+        if (cell != 0) {
+          const boardCell = document.querySelector(
+            `.c${rowIndex}-${columnIndex}`
+          );
+          if (boardCell) {
+            boardCell.classList.remove("animate__bounceInDown");
+            boardCell.classList.add("animate__bounceOutDown");
+          }
+        }
+      });
+    });
+
+    setTimeout(() => {
+      setBoard([
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+      ]);
+      setCurrentPlayer(1);
+      setHasWinner(false);
+      setIsDraw(false);
+    });
+  }, [board]);
 
   useEffect(() => {
     setPopSound(new Audio("/pop.MP3"));
@@ -202,6 +218,7 @@ function Board({ audio }: BoardProps) {
                 key={rowIndex + "-" + columnIndex}
                 value={cellValue}
                 animate={true}
+                className={`c${rowIndex}-${columnIndex}`}
               />
             ))}
           </div>
