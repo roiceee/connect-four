@@ -2,22 +2,20 @@
     height: 44px;
     width: 44px;
     border-radius: 8px;
-}
-
-.empty {
-    background-color: rgba(255, 255, 255, 0.245);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    font-weight: bold;
 }
 
 .one {
-    background-color: #ff923d;
     color: #ff923d;
 }
 
 .two {
-    background-color: #22C76B;
     color: #22C76B;
 }
-
 
 @media (max-width: 350px) {
     .style {
