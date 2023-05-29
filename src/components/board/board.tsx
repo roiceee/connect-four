@@ -5,6 +5,7 @@ import style from "./board.module.css";
 import { Button } from "react-bootstrap";
 import ResetButton from "./reset-button/reset-button";
 import VolumeButton from "../volume-button/volume-button";
+import MatrixCell from "./matrix-cell/matrix-cell";
 
 interface BoardProps {
   audio: null | HTMLAudioElement;
@@ -23,11 +24,21 @@ function Board({ audio }: BoardProps) {
     [0, 0, 0, 0, 0, 0],
   ]);
 
+  const [showMatrixState, setShowMatrixState] = useState<boolean>(false);
+
   const [popSound, setPopSound] = useState<null | HTMLAudioElement>(null);
 
   const [winSound, setWinSound] = useState<null | HTMLAudioElement>(null);
 
   const [drawSound, setDrawSound] = useState<null | HTMLAudioElement>(null);
+
+  const showMatrixToggler = useCallback(() => {
+    if (!showMatrixState) {
+      setShowMatrixState(true);
+      return;
+    }
+    setShowMatrixState(false);
+  }, [showMatrixState]);
 
   const checkDraw = useCallback(() => {
     for (let i = 0; i < board.length; i++) {
@@ -206,6 +217,11 @@ function Board({ audio }: BoardProps) {
 
   return (
     <div>
+      <div className=" d-flex justify-content-end">
+        <Button variant="dark" onClick={showMatrixToggler}>
+          {!showMatrixState ? "Show Matrix" : "Show Board"}
+        </Button>
+      </div>
       <div className={style.connectFourBoard}>
         {board.map((row, rowIndex) => (
           <div
@@ -214,12 +230,14 @@ function Board({ audio }: BoardProps) {
             onClick={() => handleColumnClick(rowIndex)}
           >
             {row.map((cellValue, columnIndex) => (
+              !showMatrixState ?
               <BoardCell
                 key={rowIndex + "-" + columnIndex}
                 value={cellValue}
                 animate={true}
                 className={`c${rowIndex}-${columnIndex}`}
               />
+              : <MatrixCell key={rowIndex + "-" + columnIndex} value={cellValue}/>
             ))}
           </div>
         ))}

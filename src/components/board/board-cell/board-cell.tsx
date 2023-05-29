@@ -18,7 +18,7 @@ function BoardCell({ value, side, animate, className }: BoardCellProps) {
           }}
           className={`${style.style} ${style.empty} ${
             animate
-              ? "animate__animated animate__bounceInDown animate_faster"
+              ? " animate__animated animate__bounceInDown animate_faster"
               : ""
           } ${className}`}
         />
@@ -31,7 +31,7 @@ function BoardCell({ value, side, animate, className }: BoardCellProps) {
           }}
           className={`${style.style} ${style.one} ${
             animate
-              ? "animate__animated animate__bounceInDown animate_faster"
+              ? " animate__animated animate__bounceInDown animate_faster"
               : ""
           } ${className}`}
         />
@@ -44,7 +44,7 @@ function BoardCell({ value, side, animate, className }: BoardCellProps) {
           }}
           className={`${style.style} ${style.two} ${
             animate
-              ? "animate__animated animate__bounceInDown animate_faster"
+              ? " animate__animated animate__bounceInDown animate_faster"
               : ""
           } ${className}`}
         />
